@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1lpvw8g5cbsm"
+path="res://.godot/imported/Tires screeching.mp3-c693a5955519039bf208ecd516abfe29.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Tires screeching.mp3"
+dest_files=["res://.godot/imported/Tires screeching.mp3-c693a5955519039bf208ecd516abfe29.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

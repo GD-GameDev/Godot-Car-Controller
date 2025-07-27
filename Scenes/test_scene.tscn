@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://do5ohefngf3ye"]
+
+[ext_resource type="Texture2D" uid="uid://b0d0860ljnkom" path="res://Assets/Textures/Prototype/prototypeBlack.png" id="1_r5l72"]
+[ext_resource type="PackedScene" uid="uid://8tjrbofpq6ft" path="res://Scenes/player.tscn" id="2_50ct6"]
+[ext_resource type="PackedScene" uid="uid://bgydrwd2rid6t" path="res://Assets/Models/city.fbx" id="3_50ct6"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_50ct6"]
+
+[sub_resource type="Sky" id="Sky_50ct6"]
+sky_material = SubResource("PhysicalSkyMaterial_50ct6")
+
+[sub_resource type="Environment" id="Environment_hb2xm"]
+background_mode = 2
+background_energy_multiplier = 3.6
+sky = SubResource("Sky_50ct6")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb2xm"]
+albedo_texture = ExtResource("1_r5l72")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ak5v8"]
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x033f"]
+data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
+
+[node name="test scene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.646765, -0.328428, 0.688353, 0.736203, -0.0330543, 0.675953, -0.199249, 0.94395, 0.263168, 0, 0, 0)
+light_energy = 0.28
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hb2xm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_hb2xm")
+mesh = SubResource("PlaneMesh_ak5v8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x033f")
+
+[node name="Player" parent="." instance=ExtResource("2_50ct6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9658, 0.000694096, 5.0868)
+
+[node name="city" parent="." instance=ExtResource("3_50ct6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 19.2321, -0.617674, -5.50868)
